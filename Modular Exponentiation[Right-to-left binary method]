@@ -1,0 +1,32 @@
+USE: It is used for modular exponentiation for large value of exponent.
+
+COMPLEXITY: The running time of this algorithm is O(log exponent).
+
+PSEUDO CODE:
+_______________________________________________________________
+function modular_pow(base, exponent, modulus)
+    if modulus = 1 then return 0
+    Assert :: (modulus - 1) * (modulus - 1) does not overflow base
+    result := 1
+    base := base mod modulus
+    while exponent > 0
+        if (exponent mod 2 == 1):
+           result := (result * base) mod modulus
+        exponent := exponent >> 1
+        base := (base * base) mod modulus
+    return result
+________________________________________________________________
+
+EXAMPLE:
+
+Example: base = 4, exponent = 13, and modulus = 497. Note that exponent is 1101 in binary notation. Because exponent is four binary digits in length, the loop executes only four times:
+
+* Upon entering the loop for the first time, variables base = 4, exponent = 1101 (binary), and result = 1. Because the right-most bit of exponent is 1, result is changed to be (1 * 4) % 497, or 4. exponent is right-shifted to become 110 (binary), and base is squared to be (4 * 4) % 497, or 16.
+
+* The second time through the loop, the right-most bit of exponent is 0, causing result to retain its present value of 4. exponent is right-shifted to become 11 (binary), and base is squared to be (16 * 16) % 497, or 256.
+
+* The third time through the loop, the right-most bit of exponent is 1. result is changed to be (4 * 256) % 497, or 30. exponent is right-shifted to become 1, and base is squared to be (256 * 256) % 497, or 429.
+
+* The fourth time through the loop, the right-most bit of exponent is 1. result is changed to be (30 * 429) % 497, or 445. exponent is right-shifted to become 0, and base is squared to be (429 * 429) % 497, or 151.
+
+The loop then terminates since exponent is zero, and the result 445 is returned.
