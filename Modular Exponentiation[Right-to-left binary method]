@@ -17,7 +17,25 @@ function modular_pow(base, exponent, modulus)
     return result
 ________________________________________________________________
 
+EXPLANATION:
+
+This algorithm is a combination of the Exponentiation by Squaring algorithm and modulo arithmetic.
+
+To understand what's going on, first consider a situation when exponent is a power of 2.
+Then, assuming that exponent = 2 ^ k, the result could be computed by squaring the result k times, i.e.
+
+res = (...((base ^ 2) ^2 ) ... ) ^2))
+              ---------------------
+                     k times
+When exponent is not a power of 2, we need to make additional multiplications.
+It turns out that if we can divide exponent by 2 without remainder, we can square the base, and divide the exponent. 
+If, however, there is a remainder, we must additionally multiply the intermediate result by the value of the current base.
+
+What you see is the same exponentiation by squaring applied to modulo multiplication.
+The algorithm denotes integer division by two using the exponent >> 1 operation, which is identical to floor(exponent / 2).
+
 EXAMPLE:
+
 base = 4, exponent = 13, and modulus = 497. Note that exponent is 1101 in binary notation.
 Because exponent is four binary digits in length, the loop executes only four times:
 
