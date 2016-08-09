@@ -18,8 +18,8 @@ function modular_pow(base, exponent, modulus)
 ________________________________________________________________
 
 EXAMPLE:
-
-Example: base = 4, exponent = 13, and modulus = 497. Note that exponent is 1101 in binary notation. Because exponent is four binary digits in length, the loop executes only four times:
+base = 4, exponent = 13, and modulus = 497. Note that exponent is 1101 in binary notation.
+Because exponent is four binary digits in length, the loop executes only four times:
 
 * Upon entering the loop for the first time, variables base = 4, exponent = 1101 (binary), and result = 1.
 Because the right-most bit of exponent is 1, result is changed to be (1 * 4) % 497, or 4.
