@@ -1,0 +1,250 @@
+STL
+
+CONTAINERS
+	Sequence containers(array and linked list):
+		- vector, deque, list, forward list, array
+	Associative Containers(binary tree)
+		-set, multiset,
+		-map, multimap
+	Unordered Containers(hash table)
+		-Unordered set/multiset
+		-Unordered map/multimap
+		
+STL Headers
+
+	#include<vector>
+	#include<deque>
+	#include<list>
+	#include<set>	//set and multiset
+	#include<map>	//map and multimap
+	#include<unordered_set>		//unordered set/multiset
+	#include<unordered_map>		
+	#include<iterator>
+	#include<algorithm>
+	#include<numeric>	//some numeric algorithm
+	#include<functional>
+
+SEQUENCE CONTAINERS
+
+Vector
+	
+	vector<int> vec; //vec.size() == 0
+	vec.push_back(4);
+	vec.push_back(1);
+	vec.push_back(8);	//vec:{4,1,8};	vec.size() = 0
+		
+	//Vector specific operations:
+	cout<<vec[2];	//8 (no range check)
+	cout<<vec.at(2)	//8 (throw range_error exception of out of range)
+	
+	for(int i; i < vec.size(); i++) {
+		cout<<vec[i]<<" ";
+	}
+		
+	for(vector<int>::iterator itr = vec.begin(); ite != vec.end(); ++itr)
+		cout<<*itr<<" ";
+		
+	for(it :: vec) //C++ 11
+		cout<<it<<" ";
+		
+	//Vector is a dynamically allocated contigous array in memory
+	int *p = &vec[0]; p[2] = 6;
+	
+	//Common member function of all containers.
+	//vec: {4,1,8}
+	if(vec.empty()) {cout << "Not Possible.\n";}
+	
+	cout<<vec.size(); //3
+	
+	vector<int> vec2(vec); //copy constructor, vec2: {4,1,8}
+	
+	vec.clear();	//remove all items in vec; vec.size() == 0
+	
+	vec2.swap(vec);	//vec2 becomes empty, and vec has 3 items
+	
+	//Notes: NO penalty of abstraction, very efficient
+	
+	/*PROPERTIES  of Vector
+	 * 1 fast insert/remove at the end: O(1)
+	 * 2 slow insert/remove at the beginning or in the middle: O(n)
+	 * 3 slow search: O(n)
+	 */
+	 
+
+DEQUE
+	
+	deque<int> deq = {4,6,7};
+	deq.push_front(2);	//deq: {2,4,6,7}
+	deq.push_back(3);	//deq: {2,4,6,7,3}st
+	
+	//Deque has similat interface with vector
+	cout<< deq[1];	//4
+	
+	/*PROPERTIES  
+	 * 1 fast insert/remove at the end and at the end: O(1)
+	 * 2 slow insert/remove in the middle: O(n)
+	 * 3 slow search: O(n)
+	 */
+	 
+LIST
+	//double linked list
+	
+	list<int>mylist = {5,2,9}
+	mylist.push_back(6);	//mylist: {5,2,9,6}
+	mylist.push_front(4);	//mylist:{4,5,2,9,6}
+	
+	list<int>::iterator itr = find(mylist.begin(), mylist.end(),2);	//itr -> 2
+	mylist.insert(itr, 8);	//mylist: {4,5,8,2,9,6}
+							//O(1), faster than vector/deque
+	itr++					//itr ->9
+	mylist.erase(itr);				//mylist: {4,5,8,2,6}  o(1)
+	
+	/*PROPERTIES  
+	 * 1 fast insert/remove at any place: O(1)
+	 * 2 no random acces, no [] operator
+	 * 3 slow search: O(n)
+	 */
+	 
+	 mylist.splice(itr, mylist2, itr_a, itr_b);	//O(1)
+	 
+ARRAY
+
+	int a[3] = {3,4,5};
+	array<int, 3> a = {3,4,5};
+	a.begin();
+	a.end();
+	a.size();
+	a.swap();
+	array<int, 4> b = {3, 4, 5};
+	
+ASSOCIATIVE CONTAINERS
+
+SET
+	//no duplicates
+	
+	set<int> myset;
+	myset.insert(3);	//myset:{3}
+	myset.insert(1);	//myset:{1,3}
+	myset.insert(7);	//myset:{1,3,7} O(log(n))
+	
+	set<int>::iterator ir;
+	it = myset.find(7);		//O(log(n)) it points to 7}		
+							//Sequence containers don't even have find() member function
+	pair<set<int>::iterator, bool> ret;
+	ret = myset.insert(3);	//no new element inserted
+	if(ret.second == false)
+		it = ret.first; 	//"it"now points to element 3}
+		
+	myset.insert(it, 9); //myset: {1,3,7,9} O(log(n)) => O(1)
+						//it points to element 3
+	myset.erase(it);	//myset:{1,7,9}
+	
+	myset.erase(7)	//myset: {1,9}
+		//NOTE : none of the sequence containers provide this kind o erase
+
+	//multitset is a set that allows duplicate items
+	multiset<int>myset;
+	
+	//set/multiset: value of the elements cannnot be modified
+	*it = 10; 	//*it is read-only
+	
+	/*PROPERTIES  
+	 * 1 No random access,no [] operator
+	 * 2 Traversing is slow (compared to vector & deque)
+	 * 3 fast search: O(log(n))
+	 */
+	 
+MAP
+	No duplicate key
+	
+	map<char, int>mymap;
+	mymap.insert( pair<char,int>('a',100));
+	mymap.insert(make_pair('z',200));
+	
+	map<char, int>:: iterator it = mymap.begin();
+	mymap.isert(it, pair<char,int>('b',300));	//"it" is a hint
+	
+	it = mymap.find('z');	//O(log(n))
+	
+	//Showing contents:
+	for(it = mymap.begin(); it != mymap.end(); it++) {
+		cout<<(*it).first << "=>" << (*it).second<<endl;
+	}
+	
+	//multimap is a map that allows duplicate keys
+	multimap<char,int>mymap;
+	
+	//map/mulitmap:
+	// -- keys cannot be modified
+	// type of *it: pair<const char, int>
+		(*it).first = 'd'; 	//Error
+		
+UNORDERED CONTAINERS
+
+UNORDERED SET
+
+	unordered_set<string> myset = {"red","green","blue"};
+	unordered_set<string>::const_iterator itr = myset.find("green");	//O(1)
+	if(itr !- myset.end())	//Important check
+		cout<<*itr<<endl;
+	myset.insert("yellow");	//O(1)
+	
+	vector<string>vec = {"purple","pink"};
+	myset.insert(vec.begin(),vec,end());
+	
+	//HASH table specific APIs:
+	cout<<"load_factor = "<<myset.load_factor()<<endl;
+	string x = "red";
+	cout<<x<<"is in bucket #"<<myset.bucket(x) << endl;
+	cout<<"Total bucket # " << myset.bucket_count() <<endl;
+	
+	//unordered multiset: unordered set that allows duplicate elements
+	//unordered map: unordered set of pairs
+	//unordered multimap: unordered map that allows duplicate keys
+	
+	//hash collision => performance degrade
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	 
+	 
+	 /*PROPERTIES  of Vector
+	 * 1 fast insert/remove at the end: O(1)
+	 * 2 slow insert/remove at the beginning or in the middle: O(n)
+	 * 3 slow search: O(n)
+	 */
+	 
+	 
+	
+		
+		
+		
+		
+		
+		
+		
+	
+	
+	
+
+
+
+
+	
