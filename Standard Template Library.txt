@@ -203,48 +203,30 @@ UNORDERED SET
 	//unordered multimap: unordered map that allows duplicate keys
 	
 	//hash collision => performance degrade
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	 
-	 
-	 /*PROPERTIES  of Vector
-	 * 1 fast insert/remove at the end: O(1)
-	 * 2 slow insert/remove at the beginning or in the middle: O(n)
-	 * 3 slow search: O(n)
+
+	/*PROPERTIES of UNORDERED CONTAINER:
+	 * 1 Fastest search/insert at any place: O(1)
+	 *	Associative Container takes O(log(n))
+	 *	vector, deque takes O(n)
+	 *	list takes O(1) to insert, O(n) to search
+	 * 2 Unordered set/multiset: element value cannot be changed
+	 *   Unordered map/multimap: element key cannot be changed
 	 */
-	 
-	 
-	
-		
-		
-		
-		
-		
-		
-		
-	
-	
-	
 
-
-
-
+ASSOCIATIVE ARRAY
+	//map and unorderd map
+	
+	unordered_map<char, string> day = {{'S',"Sunday"},{'M',"Monday"}};
+	
+	cout<<day['S']<<endl;	//No range check
+	cout<<day.at('S')<<endl	//Has range check
+	vector<int> vec = {1,2,3};
+	vec[5] = 5;	//compile error
+	day['W'] = "Wednesday"; //Inserting {'W',"Wednesday"}
+	day.insert(make_pair('F',"Friday"));	//Inserting {'F',"Friday"}
+	
+	day.insert(make_pair('M',"Monday"));	//Fail to modify, it's an unordered_map
+	day['M'] = "MONDAY";
+	
+	
 	
