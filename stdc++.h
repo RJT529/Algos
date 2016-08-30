@@ -23,4 +23,14 @@
     
     vector<int> values[5];
     Will declare an array of 5 vectors of integers.
+    
+5   How to convert string to int in c++:
+
+        string s="12345";
+        int x=0;
+         
+        stringstream convert(s);//object from the class stringstream
+                                //convert can be replaced by any valid identifier
+        convert>>x;  //the object has the value 12345 and stream it to the integer x
+            //now the variable x holds the value 12345
 
