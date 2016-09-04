@@ -1,0 +1,4 @@
+n & (n-1):
+
+can be used to figure out if n is either 0 or an exact power of two.
+Any non-power-of-two input value (other than zero) will not give you zero when you perform that operation.
