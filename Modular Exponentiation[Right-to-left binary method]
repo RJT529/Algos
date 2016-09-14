@@ -17,6 +17,23 @@ function modular_pow(base, exponent, modulus)
     return result
 ________________________________________________________________
 
+CODE:
+__________________________________________________________________
+long long int modular_pow(long long int base, long long int exponent, int modulus)  
+{
+	long long int result = 1;
+	base = base%modulus;
+	while (exponent > 0) {
+		if(exponent % 2 == 1) {
+			result = (result * base) % modulus;
+		}
+		exponent = exponent >> 1;
+		base = (base*base)% modulus;
+	}
+	return result;
+}
+__________________________________________________________________
+
 EXPLANATION:
 
 This algorithm is a combination of the Exponentiation by Squaring algorithm and modulo arithmetic.
