@@ -34,3 +34,11 @@
         convert>>x;  //the object has the value 12345 and stream it to the integer x
             //now the variable x holds the value 12345
 
+6   memset():
+
+        void * memset ( void * ptr, int value, size_t num );
+    
+    Fill block of memory
+    Sets the first num bytes of the block of memory pointed by ptr to the specified value (interpreted as an unsigned char).
+    can be used to intialize an array to 0;
+
