@@ -1,0 +1,10 @@
+A binary number is a multiple of 3 if and only if the alternating sum of its bits is also a multiple of 3.
+
+Example:
+      4   = 100       1 - 0 + 0 = 1, not multiple of 3
+      
+      6   = 110       1 - 1 + 0 = 0, multiple of 3
+      
+      78  = 1001110   1 - 0 + 0 - 1 + 1 - 1 + 0 = 0, multiple of 3
+      
+      109 = 1101101   1 - 1 + 0 - 1 + 1 - 0 + 1 = 1, not multiple of 3
