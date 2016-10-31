@@ -1,0 +1,76 @@
+// EXAMPLE 1:
+// ***********************************************************************************************************************//
+//Hackerearth Solution
+//https://www.hackerearth.com/practice/algorithms/sorting/merge-sort/practice-problems/algorithm/criminals-little-deepu-and-little-kuldeep/
+#include<bits/stdc++.h>
+using namespace std;
+ 
+typedef long long int64;
+typedef vector<int64> vi;
+typedef string ST;
+typedef stringstream SS;
+typedef vector< vector<int64> > vvi;
+typedef pair<int64,int64> ii;
+typedef vector<string> vs;
+typedef vi::iterator iter;
+ 
+#define mp make_pair
+#define St string
+#define	Sf scanf
+#define	Pf printf
+#define S second
+#define F first
+#define pb push_back
+#define tr(i, c) for(typeof((c).begin()) i = (c).begin(); i != (c).end(); i++)
+#define iterV(c, it) for (vi::iterator it = (c).begin(); it != (c).end(); it++)
+#define iterS(c, it) for (set<int64>::iterator it = (c).begin(); it != (c).end(); it++)
+#define iterM(c, it) for (map <int64, int64>::iterator it = (c).begin(); it != (c).end(); it++)
+#define	present(x, c) ((c).find(x) != (c).end()) //map & set//
+#define	cpresent(x, c) (find( (c).begin(), (c).end(), x) != (c).end()) //vector & list//
+ 
+#define pran(i, n) for(long long int i = 0; i<n; i++)
+#define pranab(i, a, b) for(long long int i = a; i<=b; i++)
+#define pran_rev(i, n) for(long long int i = n-1; i>=0; i--)
+#define pranab_rev(i, a, b) for(long long int i = b; i>=a; i--)
+#define PI 3.14159265
+#define MOD 1000000007
+ 
+vvi ans;
+#define gc getchar_unlocked
+ 
+#define mem(A,val) memset(A,val,sizeof(A))
+#define all(c) (c).begin(),(c).end()
+ 
+// to sort in decending order .....
+//sort(all(v),greater<int64>());
+ 
+ 
+// for transversing backward in vector use rbegin() and rend(); IMP...
+#define sq(x) ((x)*(x))
+ 
+int main() {
+ios_base::sync_with_stdio(0);
+ 
+int64 t;
+cin>>t;
+while(t--)
+{
+	int64 n;
+	cin>>n;
+	vi v(n);
+	pran(i,n) cin>>v[i];
+	sort(all(v),greater<int64>());
+	int64 cnt=n,i=0,j=1;
+	while(j<n){
+		if(v[i]>v[j]){
+			i++;  cnt--;
+		}
+		j++;
+	}
+	cout<<cnt<<"\n";
+	
+}
+ 
+	return 0;
+}
+//*************************************************************************************************************************//
