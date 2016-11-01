@@ -15,6 +15,15 @@ int partition ( int A[],int start ,int end) {
    return i-1;                      //return the position of the pivot
 }
 
+int rand_partition ( int A[ ] , int start , int end ) {
+    //chooses position of pivot randomly by using rand() function .
+     int random = start + rand( )%(end-start +1 ) ;
+
+      swap ( A[random] , A[start]) ;        //swap pivot with 1st element.
+     return partition(A,start ,end) ;       //call the above partition function
+}
+
+
 void quick_sort ( int A[ ] ,int start , int end ) {
    if( start < end ) {
         //stores the position of pivot element
@@ -24,10 +33,4 @@ void quick_sort ( int A[ ] ,int start , int end ) {
    }
 }
 
-int rand_partition ( int A[ ] , int start , int end ) {
-    //chooses position of pivot randomly by using rand() function .
-     int random = start + rand( )%(end-start +1 ) ;
 
-      swap ( A[random] , A[start]) ;        //swap pivot with 1st element.
-     return partition(A,start ,end) ;       //call the above partition function
-}
