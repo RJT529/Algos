@@ -1,0 +1,1 @@
+		sort(arr, arr + sizeof arr / sizeof arr[0]);		// to sort an array of name arr
