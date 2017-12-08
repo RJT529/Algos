@@ -1,0 +1,19 @@
+To get a position of an element in a vector knowing an iterator pointing to the element, 
+simply subtract v.begin() from the iterator:
+
+###############################################################################
+ptrdiff_t pos = find(Names.begin(), Names.end(), old_name_) - Names.begin();
+###############################################################################
+
+
+Now you need to check pos against Names.size() to see if it is out of bounds or not:
+
+###############################################################################
+if(pos >= Names.size()) {
+    //old_name_ not found
+}
+###############################################################################
+
+
+
+
